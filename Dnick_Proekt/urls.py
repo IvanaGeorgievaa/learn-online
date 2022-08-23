@@ -14,8 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.template.defaulttags import url
-from django.urls import path
+from django.urls import path, re_path
 from django.views.static import serve
 
 
@@ -51,7 +50,7 @@ urlpatterns = [
     path('add-question/<str:pk>/', add_question, name='addQuestion'),
     path('delete-question/<str:pkc>/<str:pkq>/', delete_question, name='deleteQuestion'),
     path('certificate/<str:pk>/', certificate, name="certificate"),
-    path('pdf/', get_certificate, name="get_certificate")
-    # url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    # url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT})
+    path('pdf/', get_certificate, name="get_certificate"),
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT})
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -51,7 +51,7 @@ urlpatterns = [
     path('add-question/<str:pk>/', add_question, name='addQuestion'),
     path('delete-question/<str:pkc>/<str:pkq>/', delete_question, name='deleteQuestion'),
     path('certificate/<str:pk>/', certificate, name="certificate"),
-    path('pdf/', get_certificate, name="get_certificate"),
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT})
+    path('pdf/', get_certificate, name="get_certificate")
+    # url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    # url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT})
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

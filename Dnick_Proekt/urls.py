@@ -14,7 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.template.defaulttags import url
 from django.urls import path
+from django.views.static import serve
+
+
 from LearnOnline_App.views import courses, home, register, login_page, logout_user, \
     course_details, favourite_course, course_favourite_list, search_course, enroll, \
     my_courses, remove_enroll, pdf_view, start_exam, certificate, get_certificate,\
@@ -48,4 +52,6 @@ urlpatterns = [
     path('delete-question/<str:pkc>/<str:pkq>/', delete_question, name='deleteQuestion'),
     path('certificate/<str:pk>/', certificate, name="certificate"),
     path('pdf/', get_certificate, name="get_certificate"),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT})
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

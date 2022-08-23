@@ -1,1 +1,1 @@
-web: gunicorn LearnOnline_App.wsgi --log-file -
+web: gunicorn Dnick_Proekt.wsgi --log-file -
